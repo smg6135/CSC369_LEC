@@ -5,10 +5,10 @@ def seperate_data(data):
 
     instructions = dict()
     datas = dict()
-
+    counter = 0
     for line in file.readlines():
         line = line.split(",")
-        access = line[1]
+        access = line[1].strip()
         ref = line[0][:-3]
 
         if access == "I":
@@ -20,14 +20,17 @@ def seperate_data(data):
             if ref in datas.keys():
                 datas[ref] += 1
             else:
+                counter += 1
                 datas[ref] = 1
     
     print("Instructions\n")
     for key in instructions.keys():
-        print(key + "," + instructions[key] + "\n")
+        print(str(key) + "," + str(instructions[key]) + "\n")
     print("\nData:\n")
     for key in datas.keys():
-        print(key + "," + datas[key] + "\n")
+        print(str(key) + "," + str(datas[key]) + "\n")
+    print(counter)
 
 if __name__ == "__main__":
-    seperate_data(sys.argv[1])
+    # seperate_data("/Users/mingonsong/2021-2022/CSC369/lec8/tr-heaploop.ref")
+    seperate_data("/Users/mingonsong/2021-2022/CSC369/lec8/tr-matmul.ref")
